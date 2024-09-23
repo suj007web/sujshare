@@ -10,8 +10,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-export const uploadImage = async (req, res) => {
+export const uploadFile = async (req, res) => {
   try {
     const file = req.file;
 
@@ -23,39 +22,41 @@ export const uploadImage = async (req, res) => {
     }
 
     const fileUri = getDataUri(file);
+    
+  
     const cloudinaryResult = await cloudinary.v2.uploader.upload(
-      fileUri.content
+      fileUri.content,
+      { resource_type: "auto" }
     );
-    const image_url = cloudinaryResult.secure_url;
-    const image_id = cloudinaryResult.public_id;
+
+    const file_url = cloudinaryResult.secure_url;
+    const file_id = cloudinaryResult.public_id;
     
     const myfile = new File({
-        filename: req.file.originalname,
-        cloudinaryUrl: image_url,
-        cloudinaryPublicId: image_id,
+      filename: req.file.originalname,
+      cloudinaryUrl: file_url,
+      cloudinaryPublicId: file_id,
     });
 
-    // const downloadUrl = `${process.env.BACKEND_URL}/download/${myfile._id}`;
-    const qrCodeDataUrl = await QRCode.toDataURL(image_url);
+    const qrCodeDataUrl = await QRCode.toDataURL(file_url);
     myfile.qrCode = qrCodeDataUrl;
 
     await myfile.save();
 
     return res.status(200).json({
       success: true,
-      message: "Image uploaded successfully.",
-      file: myfile
+      message: "File uploaded successfully.",
+      file: myfile,
     });
 
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Image upload failed",
+      message: "File upload failed",
       error,
     });
   }
 };
-
 export const downloadFile = async (req, res) => {
   try {
     const file = await File.findById(req.params.id);
