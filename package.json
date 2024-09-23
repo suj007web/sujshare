@@ -1,0 +1,13 @@
+{
+  "name": "sujshare",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd ./Backend && npm i && cd ../Frontend && npm i",
+    "start": "cd ./Backend && npm run dev && cd ../Frontend && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
