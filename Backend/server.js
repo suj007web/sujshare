@@ -20,7 +20,7 @@ const staticDir = path.join(__dirname, '..', 'Frontend', 'dist')
 
 app.use(express.static(staticDir))
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: '*',
   optionsSuccessStatus: 200
 }));
 
