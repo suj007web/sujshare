@@ -17,7 +17,7 @@ const FileUpload = () => {
     setFile(selectedFile);
     setPreviewUrl(URL.createObjectURL(selectedFile));
   };
-
+  console.log(`${backendUrl}/api/upload`);
   const handleUpload = async () => {
     if (!file) {
       alert('Please select a file first!');
