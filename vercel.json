@@ -21,16 +21,16 @@
         "dest": "/_vercel/insights/script.js"
       },
       {
-        "src": "/assets/(.*)",
-        "dest": "Frontend/dist/assets/$1"
+        "src": "^/assets/(.*)",
+        "dest": "/Frontend/dist/assets/$1"
       },
       {
-        "src": "/(.*)\\.(.+)",
-        "dest": "Frontend/dist/$1.$2"
+        "src": "^/(.+\\.(?:ico|png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|eot|ttf|otf)$)",
+        "dest": "/Frontend/dist/$1"
       },
       {
-        "src": "/(.*)",
-        "dest": "Backend/server.js"
+        "src": "^/(.*)",
+        "dest": "/Backend/server.js"
       }
     ]
   }
