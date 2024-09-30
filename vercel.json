@@ -21,6 +21,10 @@
         "dest": "/_vercel/insights/script.js"
       },
       {
+        "src": "/assets/(.*)",
+        "dest": "Frontend/dist/assets/$1"
+      },
+      {
         "src": "/(.*)",
         "dest": "Backend/server.js"
       }
