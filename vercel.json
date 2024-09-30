@@ -25,6 +25,10 @@
         "dest": "Frontend/dist/assets/$1"
       },
       {
+        "src": "/(.*)\\.(.+)",
+        "dest": "Frontend/dist/$1.$2"
+      },
+      {
         "src": "/(.*)",
         "dest": "Backend/server.js"
       }
