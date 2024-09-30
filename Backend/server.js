@@ -6,6 +6,7 @@ import fileRoutes from './routes/file.route.js';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 
+
 dotenv.config();
 
 const app = express();
@@ -25,16 +26,10 @@ app.use(cors({
 
 app.use('/api', fileRoutes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(staticDir, 'index.html'));
+app.get('*', (req, res, next) => {
+  return res.sendFile(path.join(staticDir, 'index.html'))
 });
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
-
+console.log(staticDir);
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
