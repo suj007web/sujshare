@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cd ./Backend && npm i && cd ../Frontend && npm i && npm run build",
-    "start": "cd ./Backend && npm run dev",
-    "postinstall": "cd ./Frontend && npm run build"
+    "start": "cd ./Backend && npm run dev"
   },
   "keywords": [],
   "author": "",
